@@ -1,55 +1,14 @@
-let count=0;
+const colors = ["green", "red", "Rgba(133,122,200)","#f15025"];
+const btn = document.getElementById('btn');
+const color = document.querySelector('.color');
 
-let value = document.querySelector("#value");
-const btns = document.querySelectorAll('.btn');
-
-btns.forEach((btn)=>{
-    btn.addEventListener('click', (e)=>{
-        const classEle = e.currentTarget.classList;
-        if(classEle.contains("decrease"))
-            count--;
-        else if(classEle.contains("reset"))
-            count=0;
-        else
-            count++;
-        
-        if(count<0)
-            value.style.color="red";
-        else if(count==0)
-            value.style.color="black";
-        else
-            value.style.color="green";
-
-        value.textContent = count;
-    })
+btn.addEventListener('click', ()=>{
+//get random number between 0 - 3 colors[0]
+    const randomNumber = getRandomNumber();
+    document.body.style.backgroundColor = colors[randomNumber];
+    color.textContent = colors[randomNumber];
 })
 
-/***** 
- * Previous Code
- * Kind of old school
- * explore
- * don't stick to simple Inaccurate method
-decreaseBtn.addEventListener('click', ()=>{
-    value.textContent = --count;
-    if(count<0)
-        value.style.color="red";
-    else if(count==0)
-        value.style.color="black";
-    else
-        value.style.color="green";
-})
-resetBtn.addEventListener('click', ()=>{
-    count=0
-    value.textContent=0;
-    value.style.color="black"
-})
-increaseBtn.addEventListener('click', ()=>{
-    value.textContent=++count;
-    if(count>0)
-        value.style.color="green";
-    else if(count==0)
-        value.style.color="black";
-    else
-        value.style.color="green";
-})
-*****/
+function getRandomNumber(){
+    return Math.floor(Math.random()*colors.length);
+}
